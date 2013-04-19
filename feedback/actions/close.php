@@ -16,15 +16,19 @@
 
 admin_gatekeeper();
 
+gatekeeper();
+
 // Get input data
 $guid = (int) get_input('guid');
 
 // Make sure we actually have permission to edit
 $feedback = get_entity($guid);
-if ($feedback->getSubtype() == "feedback") {
-    // Delete it!
-    $feedback->delete();
-    // Success message
-    system_message(elgg_echo("feedback:delete:success"));
-    forward(REFERER);
-}
+if ( $feedback->getSubtype() == "feedback" && $feedback->canEdit() ) {
+  // Set this feedback as answered / closed
+  $feedback->status = "closed";
+  // Success message
+  system_message(elgg_echo("feedback:close:success"));
+} else register_error(elgg_echo("feedback:close:error"));
+
+forward(REFERER);
+

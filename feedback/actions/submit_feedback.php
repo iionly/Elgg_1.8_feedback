@@ -12,6 +12,12 @@
  *
  * for Elgg 1.8 by iionly
  * iionly@gmx.de
+ * 
+ * Adaptations by Facyla ~ Florian DANIEL
+ * facyla@gmail.com
+ * Implement status, member view, access selector, property-based rendering, + french translation & various other adaptations
+ * http://lereseausocial.fr/
+ * 
  */
 
 action_gatekeeper();
@@ -39,11 +45,13 @@ $feedback->mood = get_input('mood');
 $feedback->about = get_input('about');
 $feedback->id = $feedback_sender = get_input('id');
 $feedback->txt = $feedback_txt = get_input('txt');
+$feedback->status = get_input('status', 'open'); // Default status = open
+$feedback->access_id = (int) get_input('access_id', 0); // Default access = private (admin only)
 // save the feedback now
 $feedback->save();
 
 // Success message
-echo "<div id=\"feedbackSuccess\">".elgg_echo("feedback:submit:success")."</div>";
+echo '<div id="feedbackSuccess">' . elgg_echo("feedback:submit:success") . '</div>';
 
 // now email if required
 $user_guids = array();
