@@ -24,10 +24,20 @@ Installation:
 
 
 Changelog:
-1.8.14 : many improvements, see manifest.xml
+1.8.14 : many changes and improvements to let admins use feedbacks as an animation tool
+  * french translation
+  * setting : allow comments on feedbacks (default false)
+  * setting : allow members to view comments (default false)
+  * setting : associate feedback to a group / multiple groups (group tool), or none (default)
+  * access rights (default private = admin only)
+  * added "question" about
+  * "about" filtering, 
+  * "status" filtering (open/closed), 
+  * CSS for rendering and status visual identification
+  * icons (@TODO for implementation in CSS or HTML)
 
 1.8.0beta1:
+  * Initial release for Elgg 1.8,
+  * Captcha check (only used when logged out) currently commented out in code as it does not refresh in the way I would like to.
+  * For logged-out visitors it does not yet work with Elgg's walled-garden option enabled or when the Loginrequired plugin is used.
 
-* Initial release for Elgg 1.8,
-* Captcha check (only used when logged out) currently commented out in code as it does not refresh in the way I would like to.
-* For logged-out visitors it does not yet work with Elgg's walled-garden option enabled or when the Loginrequired plugin is used.
