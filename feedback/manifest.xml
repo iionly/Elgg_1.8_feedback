@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
         <name>Feedback</name>
-        <author>iionly (for Elgg 1.8), Simon ST (for Elgg 1.7), Prashant Juvekar</author>
-        <version>1.8.0beta1</version>
+        <author>Facyla (for imprvements), iionly (for Elgg 1.8), Simon ST (for Elgg 1.7), Prashant Juvekar</author>
+        <version>1.8.14</version>
         <category>communication</category>
         <description>Site Feedback Plugin.</description>
-        <website>https://github.com/iionly</website>
-        <copyright>(C) iionly 2012, (C) Simon ST 2010-2012, (C) Prashant Juvekar 2009-2012</copyright>
+        <website>https://github.com/Facyla</website>
+        <copyright>(C) Facyla 2013 (C) iionly 2012, (C) Simon ST 2010-2012, (C) Prashant Juvekar 2009-2012</copyright>
         <license>GNU Public License version 2</license>
         <requires>
                 <type>elgg_release</type>
@@ -23,3 +23,15 @@
                 <priority>after</priority>
         </requires>-->
 </plugin_manifest>
+
+<!--
+1.8.14 : Facyla 2013.04
+  - french translation
+  - many changes and improvements to let admins use feedbacks as an animation tool : 
+    * access rights, 
+    * "about" filtering, 
+    * status + filtering, 
+    * association to groups, 
+    * etc.
+//-->
+
