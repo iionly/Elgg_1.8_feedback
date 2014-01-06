@@ -14,8 +14,6 @@
  * iionly@gmx.de
  */
 
-global $CONFIG;
-
 $user_ip = $_SERVER[REMOTE_ADDR];
 
 $user_id = elgg_echo('feedback:default:id');
@@ -26,11 +24,11 @@ if (elgg_is_logged_in()) {
 
 $ts = time();
 $token = generate_action_token($ts);
-$feedback_url = $vars['url'] . "action/feedback/submit_feedback?&__elgg_token=$token&__elgg_ts=$ts";
+$feedback_url = elgg_get_site_url() ."action/feedback/submit_feedback?&__elgg_token=$token&__elgg_ts=$ts";
 
-$progress_img = '<img src="'.$CONFIG->wwwroot.'mod/feedback/_graphics/ajax-loader.gif" alt="'.elgg_echo('feedback:submit_msg').'" />';
-$open_img = '<img src="'.$CONFIG->wwwroot.'mod/feedback/_graphics/slide-button-open.gif" alt="'.elgg_echo('feedback:label').'" title="'.elgg_echo('feedback:label').'" />';
-$close_img = '<img src="'.$CONFIG->wwwroot.'mod/feedback/_graphics/slide-button-close.gif" alt="'.elgg_echo('feedback:label').'" title="'.elgg_echo('feedback:label').'" />';
+$progress_img = '<img src="'.elgg_get_site_url().'mod/feedback/_graphics/ajax-loader.gif" alt="'.elgg_echo('feedback:submit_msg').'" />';
+$open_img = '<div class="elgg-button elgg-button-action feedbackButton">'.elgg_echo('feedback:title').'</div>';
+$close_img = '<div class="elgg-button elgg-button-action feedbackButton">'.elgg_echo('feedback:title').'</div>';
 ?>
 
 <div id="feedbackWrapper">
@@ -43,57 +41,45 @@ $close_img = '<img src="'.$CONFIG->wwwroot.'mod/feedback/_graphics/slide-button-
 
     <div id="feedBackContent">
         <div style="padding:10px;">
-            <h1 style="padding-bottom:10px;">
+            <h1 style="padding-bottom:5px;">
                 <?php echo elgg_echo('feedback:title'); ?>
             </h1>
 
-            <div style="padding-bottom:10px;">
+            <div style="padding-bottom:5px;">
                 <?php echo elgg_echo('feedback:message'); ?>
             </div>
 
             <div id="feedBackFormInputs">
                 <form id="feedBackForm" action="" method="post" onsubmit="FeedBack_Send();return false;">
                     <div>
-                        <div style="float:left"><b><?php echo elgg_echo('feedback:list:mood')?>:&nbsp;&nbsp;&nbsp;&nbsp;</b></div>
-                        <div style="float:left">
-                            <input type="radio" name="mood" value="angry"> <?php echo elgg_echo('feedback:mood:angry')?>
-                            <input type="radio" name="mood" value="neutral" checked> <?php echo elgg_echo('feedback:mood:neutral')?>
-                            <input type="radio" name="mood" value="happy"> <?php echo elgg_echo('feedback:mood:happy')?>
+                        <div><b><?php echo elgg_echo('feedback:list:mood')?>:</b></div>
+                        <div>
+                            <div style='float:left;width:33%'><input type="radio" name="mood" value="angry"> <?php echo elgg_echo('feedback:mood:angry')?></div>
+                            <div style='float:left;width:34%'><input type="radio" name="mood" value="neutral" checked> <?php echo elgg_echo('feedback:mood:neutral')?></div>
+                            <div style='float:left;width:33%'><input type="radio" name="mood" value="happy"> <?php echo elgg_echo('feedback:mood:happy')?></div>
                         </div>
-                        <div style="clear:both;"></div>
                     </div>
-                    <br />
+                    <div style="clear:both;"></div>
                     <div>
-                        <div style="float:left"><b><?php echo elgg_echo('feedback:list:about')?>:&nbsp;&nbsp;&nbsp;&nbsp;</b></div>
-                        <div style="float:left">
-                            <input type="radio" name="about" value="bug_report"> <?php echo elgg_echo('feedback:about:bug_report')?>
-                            <input type="radio" name="about" value="content"> <?php echo elgg_echo('feedback:about:content')?>
-                            <input type="radio" name="about" value="suggestions" checked> <?php echo elgg_echo('feedback:about:suggestions')?><br />
-                            <input type="radio" name="about" value="compliment"> <?php echo elgg_echo('feedback:about:compliment')?>
-                            <input type="radio" name="about" value="other"> <?php echo elgg_echo('feedback:about:other')?>
+                        <div><b><?php echo elgg_echo('feedback:list:about')?>:</b></div>
+                        <div>
+                            <div style='float:left;width:33%'><input type="radio" name="about" value="bug_report"> <?php echo elgg_echo('feedback:about:bug_report')?></div>
+                            <div style='float:left;width:34%'><input type="radio" name="about" value="suggestions" checked> <?php echo elgg_echo('feedback:about:suggestions')?></div>
+                            <div style='float:left;width:33%'><input type="radio" name="about" value="content"> <?php echo elgg_echo('feedback:about:content')?></div><br>
+                            <div style='float:left;width:33%'><input type="radio" name="about" value="compliment"> <?php echo elgg_echo('feedback:about:compliment')?></div>
+                            <div style='float:left;width:34%'><input type="radio" name="about" value="other"> <?php echo elgg_echo('feedback:about:other')?></div>
                         </div>
-                        <div style="clear:both;"></div>
                     </div>
-                    <br />
-                    <div>
-                        <input type="text" name="feedback_id" value="<?php echo $user_id?>" id="feedback_id" size="30" onfocus="if (this.value == '<?php echo elgg_echo('feedback:default:id')?>') {this.value = '';}" onblur="if (this.value == '') {this.value = '<?php echo elgg_echo('feedback:default:id')?>';}" class="feedbackText" />
+                    <div style="clear:both;"></div>
+                    <div style="padding-top:5px;">
+                        <input type="text" name="feedback_id" value="<?php echo $user_id?>" id="feedback_id" size="20" onfocus="if (this.value == '<?php echo elgg_echo('feedback:default:id')?>') {this.value = '';}" onblur="if (this.value == '') {this.value = '<?php echo elgg_echo('feedback:default:id')?>';}" class="feedbackText" />
                     </div>
                     <div style="padding-top:5px;">
-                        <textarea name="feedback_txt" cols="34" rows="10" id="feedback_txt" onfocus="if (this.value == '<?php echo elgg_echo('feedback:default:txt')?>') {this.value = '';}" onblur="if (this.value == '') {this.value = '<?php echo elgg_echo('feedback:default:txt')?>';}" class="feedbackTextbox mceNoEditor"><?php echo elgg_echo('feedback:default:txt')?></textarea>
-                     </div>
-                     <?php
-//                         // only use captcha when logged out
-//                         if (!elgg_is_logged_in() ) {
-//                             // if captcha functions are loaded, then use captcha
-//                             if ( function_exists ( "captcha_generate_token" ) ) {
-//                                 echo elgg_view('input/captcha');
-//                             }
-//                         }
-                     ?>
+                        <textarea name="feedback_txt" cols="25" rows="10" id="feedback_txt" onfocus="if (this.value == '<?php echo elgg_echo('feedback:default:txt')?>') {this.value = '';}" onblur="if (this.value == '') {this.value = '<?php echo elgg_echo('feedback:default:txt')?>';}" class="feedbackTextbox"><?php echo elgg_echo('feedback:default:txt')?></textarea>
+                    </div>
                     <div style="padding-top:10px;">
                         <input id="feedback_send_btn"   name="<?php echo elgg_echo('send'); ?>"   value="Send"   type="button" class="elgg-button elgg-button-submit" onclick="FeedBack_Send();"  />
                         <input id="feedback_cancel_btn" name="<?php echo elgg_echo('cancel'); ?>" value="Cancel" type="button" class="elgg-button elgg-button-cancel" onclick="FeedBack_Toggle();" />
-                        &nbsp;
                     </div>
                 </form>
             </div>
@@ -112,7 +98,7 @@ $close_img = '<img src="'.$CONFIG->wwwroot.'mod/feedback/_graphics/slide-button-
 
     <?php
         // if user is logged in then disable the feedback ID
-        if ( elgg_is_logged_in() ) {
+        if (elgg_is_logged_in()) {
             echo "$('#feedback_id').attr ('disabled', 'disabled');";
         }
     ?>
@@ -123,7 +109,7 @@ $close_img = '<img src="'.$CONFIG->wwwroot.'mod/feedback/_graphics/slide-button-
     var toggle_state = 0;
 
     function FeedBack_Toggle() {
-        if ( toggle_state ) {
+        if (toggle_state) {
             toggle_state = 0;
             $("#feedbackWrapper").width("50px");
             $("#feedBackTogglerLink").html('<?php echo $open_img?>');
@@ -147,28 +133,14 @@ $close_img = '<img src="'.$CONFIG->wwwroot.'mod/feedback/_graphics/slide-button-
         var id = $("#feedback_id").val().replace(/^\s+|\s+$/g,"");
         var txt = encodeURIComponent( $("#feedback_txt").val().replace(/^\s+|\s+$/g,"") );
 
-//         <?php
-//             // only use captcha when logged out
-//             if (!elgg_is_logged_in() ) {
-//         ?>
-//                 var captcha_token = $('input[name=captcha_token]').val();
-//                 var captcha_input = $('input[name=captcha_input]').val();
-//                 if ( captcha_token != '' && captcha_input == '' ) {
-//                     alert ( "<?php echo elgg_echo('feedback:captcha:blank')?>" );
-//                     return;
-//                 }
-//         <?php
-//             }
-//         ?>
-
         // if no address provided...
-        if ( id == '' || id == "<?php echo elgg_echo('feedback:default:id')?>" ) {
+        if (id == '' || id == "<?php echo elgg_echo('feedback:default:id')?>" ) {
             id = "<?php echo $user_ip ?>";
         }
 
         // if no text provided...
-        if ( txt == '' || txt == encodeURIComponent("<?php echo elgg_echo('feedback:default:txt')?>") ) {
-            alert ( "<?php echo elgg_echo('feedback:default:txt:err')?>" );
+        if (txt == '' || txt == encodeURIComponent("<?php echo elgg_echo('feedback:default:txt')?>") ) {
+            alert ("<?php echo elgg_echo('feedback:default:txt:err')?>" );
             return;
         }
 
@@ -182,18 +154,7 @@ $close_img = '<img src="'.$CONFIG->wwwroot.'mod/feedback/_graphics/slide-button-
         jQuery.ajax( {
             url: "<?php echo $feedback_url?>",
             type: "POST",
-            <?php
-//                 // only use captcha when logged out
-//                 if (!elgg_is_logged_in() ) {
-            ?>
-//                 data: "captcha_input="+captcha_input+"&captcha_token="+captcha_token+"&page="+page+"&mood="+mood+"&about="+about+"&id="+id+"&txt="+txt,
-            <?php
-//                 } else {
-            ?>
-                data: "page="+page+"&mood="+mood+"&about="+about+"&id="+id+"&txt="+txt,
-            <?php
-//                 }
-            ?>
+            data: "page="+page+"&mood="+mood+"&about="+about+"&id="+id+"&txt="+txt,
             cache: false,
             dataType: "html",
             error: function() {

@@ -18,9 +18,9 @@
 
 #feedbackWrapper {
     position: fixed;
-    top: 150px;
-    left: 0px;
-    width: 450px;
+    top: 136px;
+    left: 25px;
+    width: 320px;
     z-index:1;
 }
 
@@ -29,7 +29,7 @@
 }
 
 #feedBackContent {
-    width: 400px;
+    width: 310px;
     display: none;
     overflow: hidden;
     float: left;
@@ -68,30 +68,37 @@
     background-color: #00ff00;
 }
 
-.feedbackLabel {
+.feedbackButton {
+    position: fixed;
+    top: 280px;
+    left: 0px;
+    z-index:1;
+    font-size:24px;
+    display:inline-block;
+    -webkit-border-top-left-radius: 0px;
+    -webkit-border-top-right-radius: 0px;
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-topright: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    -webkit-transform-origin: 0% 0%;
+    -moz-transform-origin: 0% 0%;
+    -ms-transform-origin: 0% 0%;
+    -o-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
 .feedbackText {
-    width:350px;
+    width:290px;
 }
 
 .feedbackTextbox {
-    width:350px;
+    width:290px;
     height:75px;
-}
-
-.captcha {
-    padding:10px;
-}
-.captcha-left {
-    float:none;
-}
-.captcha-middle {
-    float:none;
-}
-.captcha-right {
-    float:none;
-}
-.captcha-input-text {
-    width:100px;
 }

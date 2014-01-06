@@ -1,6 +1,6 @@
 Feedback plugin for Elgg 1.8
-Latest Version: 1.8.0beta1
-Released: 2012-07-05
+Latest Version: 1.8.1
+Released: 2014-01-06
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly (for Elgg 1.8), Simon ST (for Elgg 1.7), Prashant Juvekar
@@ -23,6 +23,15 @@ Installation:
 
 
 Changelog:
+
+1.8.1:
+
+* Fixed sending of feedback when logged out (It seems this got broken by some change in an Elgg core version released since I published 1.8.0beta1. Unfortunately, any feedback created since then by a logged out user resulted in an invalid entity being created in the database - and these feedback entities do not show up in the admin section. Using the Database Validator plugin available at http://community.elgg.org/plugins/438616/1.4/database-validator you can clean up your database from these invalid entities easily though),
+* Size of Feedback dialog window reduced and layout re-done,
+* Feedback button is now built with vertical text instead of an image, so it can be translated to different languages,
+* Works now with walled-garden option enabled or Loginrequired plugin installed,
+* Removal of any code that is connected with captchas. This code was commented out anyway. Unfortunately, I haven't got it working as I wanted with utilization of a captcha plugin installed and proper refreshing of the captcha image when necessary (after successful posting of feedback or when the captcha text was entered wrong without manual reloading of the page). If anyone manages to implement a fully-working captcha check (I imagine only for logged-out users) I would be most delighted about a PR at the github repo of the Feedback plugin,
+* Code cleanup.
 
 1.8.0beta1:
 

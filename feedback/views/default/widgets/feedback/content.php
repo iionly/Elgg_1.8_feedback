@@ -9,10 +9,15 @@
  * List the latest feedback entries
  */
 
+$limit = $vars['entity']->num_display;
+if (!$limit) {
+    $limit = 4;
+}
+ 
 $list = elgg_list_entities(array(
-        'types' => 'object',
-        'subtypes' => 'feedback',
-        'limit' => $vars['entity']->num_display,
+        'type' => 'object',
+        'subtype' => 'feedback',
+        'limit' => $limit,
         'pagination' => false
 ));
 if (!$list) {

@@ -14,25 +14,20 @@
  * iionly@gmx.de
  */
 
-action_gatekeeper();
+if (elgg_get_logged_in_user_guid()) {
+    $owner_guid = elgg_get_logged_in_user_guid();
+} else {
+    $owner_guid = elgg_get_config('site_guid');
+}
 
-// // check if captcha functions are loaded (only necessary when logged out)
-// if (!elgg_is_logged_in()) {
-//     if ( function_exists ( "captcha_verify_captcha" ) ) {
-//         // captcha verification
-//         $token = get_input('captcha_token');
-//         $input = get_input('captcha_input');
-//         if ( !$token || !captcha_verify_captcha($input, $token) ) {
-//             echo "<div id=\"feedbackError\">".elgg_echo('captcha:captchafail')."</div>";
-//             exit();
-//         }
-//     }
-// }
+$access = elgg_set_ignore_access(true);
 
 // Initialise a new ElggObject
 $feedback = new ElggObject();
 // Tell the system it's a feedback
 $feedback->subtype = "feedback";
+$feedback->owner_guid = $owner_guid;
+$feedback->container_guid = $owner_guid;
 // Set the feedback's content
 $feedback->page = get_input('page');
 $feedback->mood = get_input('mood');
@@ -47,16 +42,20 @@ echo "<div id=\"feedbackSuccess\">".elgg_echo("feedback:submit:success")."</div>
 
 // now email if required
 $user_guids = array();
-for ( $idx=1; $idx<=5; $idx++ ) {
-    $name = elgg_get_plugin_setting( 'user_'.$idx, 'feedback' );
-    if ( !empty($name) ) {
-        if ( $user = get_user_by_username($name) ) {
+for ($idx=1; $idx<=5; $idx++) {
+    $name = elgg_get_plugin_setting('user_'.$idx, 'feedback');
+    if (!empty($name)) {
+        if ($user = get_user_by_username($name)) {
             $user_guids[] = $user->guid;
         }
     }
 }
-if ( count($user_guids) > 0 ) {
-    notify_user($user_guids, $CONFIG->site->guid, sprintf(elgg_echo('feedback:email:subject'), $feedback_sender), sprintf(elgg_echo('feedback:email:body'), $feedback_txt));
+if (count($user_guids) > 0) {
+    foreach($user_guids as $user_guid) {
+        notify_user($user_guid, elgg_get_config('site_guid'), elgg_echo('feedback:email:subject', array($feedback_sender)), elgg_echo('feedback:email:body', array($feedback_txt)));
+    }
 }
+
+elgg_set_ignore_access($access);
 
 exit();

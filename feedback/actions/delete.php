@@ -14,8 +14,6 @@
  * iionly@gmx.de
  */
 
-admin_gatekeeper();
-
 // Get input data
 $guid = (int) get_input('guid');
 

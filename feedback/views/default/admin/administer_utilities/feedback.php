@@ -14,7 +14,10 @@
  * iionly@gmx.de
  */
 
-$list = elgg_list_entities(array('types' => 'object', 'subtypes' => 'feedback'));
+$offset = (int)get_input('offset');
+$limit = 10;
+
+$list = elgg_list_entities(array('type' => 'object', 'subtype' => 'feedback', 'limit' => $limit, 'offset' => $offset));
 if (!$list) {
         $list = '<p class="mtm">' . elgg_echo('feedback:list:nofeedback') . '</p>';
 }
