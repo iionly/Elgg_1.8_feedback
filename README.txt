@@ -1,6 +1,6 @@
 Feedback plugin for Elgg 1.8
-Latest Version: 1.8.1
-Released: 2014-01-06
+Latest Version: 1.8.2
+Released: 2014-05-20
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly (for Elgg 1.8), Simon ST (for Elgg 1.7), Prashant Juvekar
@@ -23,6 +23,10 @@ Installation:
 
 
 Changelog:
+
+1.8.2:
+
+* fix for submit, cancel and close buttons of feedback submit form supporting multiple languages (if translations provided in a language file).
 
 1.8.1:
 

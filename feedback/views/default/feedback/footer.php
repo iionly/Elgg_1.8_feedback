@@ -78,14 +78,14 @@ $close_img = '<div class="elgg-button elgg-button-action feedbackButton">'.elgg_
                         <textarea name="feedback_txt" cols="25" rows="10" id="feedback_txt" onfocus="if (this.value == '<?php echo elgg_echo('feedback:default:txt')?>') {this.value = '';}" onblur="if (this.value == '') {this.value = '<?php echo elgg_echo('feedback:default:txt')?>';}" class="feedbackTextbox"><?php echo elgg_echo('feedback:default:txt')?></textarea>
                     </div>
                     <div style="padding-top:10px;">
-                        <input id="feedback_send_btn"   name="<?php echo elgg_echo('send'); ?>"   value="Send"   type="button" class="elgg-button elgg-button-submit" onclick="FeedBack_Send();"  />
-                        <input id="feedback_cancel_btn" name="<?php echo elgg_echo('cancel'); ?>" value="Cancel" type="button" class="elgg-button elgg-button-cancel" onclick="FeedBack_Toggle();" />
+                        <input id="feedback_send_btn"   name="send"   value="<?php echo elgg_echo('send'); ?>"   type="button" class="elgg-button elgg-button-submit" onclick="FeedBack_Send();"  />
+                        <input id="feedback_cancel_btn" name="cancel" value="<?php echo elgg_echo('cancel'); ?>" type="button" class="elgg-button elgg-button-cancel" onclick="FeedBack_Toggle();" />
                     </div>
                 </form>
             </div>
             <div id="feedBackFormStatus"></div>
             <div id='feedbackClose' style="padding-top:10px;">
-                <input id="feedback_close_btn"   name="<?php echo elgg_echo('close'); ?>"   value="Close"   type="button" class="elgg-button elgg-button-cancel" onclick="FeedBack_Toggle();"  />
+                <input id="feedback_close_btn" name="close" value="<?php echo elgg_echo('close'); ?>" type="button" class="elgg-button elgg-button-cancel" onclick="FeedBack_Toggle();"  />
             </div>
         </div>
     </div>
