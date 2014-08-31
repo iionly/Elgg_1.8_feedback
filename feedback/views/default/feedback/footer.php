@@ -34,7 +34,7 @@ $close_img = '<div class="elgg-button elgg-button-action feedbackButton">'.elgg_
 <div id="feedbackWrapper">
 
     <div id="feedBackToggler">
-        <a id="feedBackTogglerLink" href="javascript:void(0)" onclick="FeedBack_Toggle();this.blur();" style="float:left;position:relative;left:-1px;">
+        <a id="feedBackTogglerLink" href="javascript:void(0)" onclick="FeedBack_Toggle();this.blur();">
             <?php echo $open_img ?>
         </a>
     </div>
@@ -54,20 +54,20 @@ $close_img = '<div class="elgg-button elgg-button-action feedbackButton">'.elgg_
                     <div>
                         <div><b><?php echo elgg_echo('feedback:list:mood')?>:</b></div>
                         <div>
-                            <div style='float:left;width:33%'><input type="radio" name="mood" value="angry"> <?php echo elgg_echo('feedback:mood:angry')?></div>
-                            <div style='float:left;width:34%'><input type="radio" name="mood" value="neutral" checked> <?php echo elgg_echo('feedback:mood:neutral')?></div>
-                            <div style='float:left;width:33%'><input type="radio" name="mood" value="happy"> <?php echo elgg_echo('feedback:mood:happy')?></div>
+                            <div><input type="radio" name="mood" value="angry"> <?php echo elgg_echo('feedback:mood:angry')?></div>
+                            <div><input type="radio" name="mood" value="neutral" checked> <?php echo elgg_echo('feedback:mood:neutral')?></div>
+                            <div><input type="radio" name="mood" value="happy"> <?php echo elgg_echo('feedback:mood:happy')?></div>
                         </div>
                     </div>
                     <div style="clear:both;"></div>
                     <div>
                         <div><b><?php echo elgg_echo('feedback:list:about')?>:</b></div>
                         <div>
-                            <div style='float:left;width:33%'><input type="radio" name="about" value="bug_report"> <?php echo elgg_echo('feedback:about:bug_report')?></div>
-                            <div style='float:left;width:34%'><input type="radio" name="about" value="suggestions" checked> <?php echo elgg_echo('feedback:about:suggestions')?></div>
-                            <div style='float:left;width:33%'><input type="radio" name="about" value="content"> <?php echo elgg_echo('feedback:about:content')?></div><br>
-                            <div style='float:left;width:33%'><input type="radio" name="about" value="compliment"> <?php echo elgg_echo('feedback:about:compliment')?></div>
-                            <div style='float:left;width:34%'><input type="radio" name="about" value="other"> <?php echo elgg_echo('feedback:about:other')?></div>
+                            <div><input type="radio" name="about" value="bug_report"> <?php echo elgg_echo('feedback:about:bug_report')?></div>
+                            <div><input type="radio" name="about" value="suggestions" checked> <?php echo elgg_echo('feedback:about:suggestions')?></div>
+                            <div><input type="radio" name="about" value="content"> <?php echo elgg_echo('feedback:about:content')?></div>
+                            <div><input type="radio" name="about" value="compliment"> <?php echo elgg_echo('feedback:about:compliment')?></div>
+                            <div><input type="radio" name="about" value="other"> <?php echo elgg_echo('feedback:about:other')?></div>
                         </div>
                     </div>
                     <div style="clear:both;"></div>

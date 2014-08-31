@@ -1,6 +1,6 @@
 Feedback plugin for Elgg 1.8
-Latest Version: 1.8.2
-Released: 2014-05-20
+Latest Version: 1.8.3
+Released: 2014-08-31
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly (for Elgg 1.8), Simon ST (for Elgg 1.7), Prashant Juvekar
@@ -23,6 +23,10 @@ Installation:
 
 
 Changelog:
+
+1.8.3:
+
+* useability improvement for small screens: if screen width is lower than 1030px the feedback button moves from the fixed left border position to above the footer. Feedback form width gets smaller, too. Feedback form layout has been slightly changed (radio buttons now vertically aligned) to take into account this variable form width.
 
 1.8.2:
 
